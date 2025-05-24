@@ -3,85 +3,117 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meu Portfólio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f5f5f5;
-      color: #333;
-    }
-    header {
-      background: #1f2937;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    section {
-      padding: 40px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .portfolio-item, .product-item {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
-    }
-    .product-item img {
-      width: 100%;
-      max-width: 300px;
-      height: auto;
-      border-radius: 8px;
-    }
-    .add-to-cart {
-      background-color: #2563eb;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    .cart-summary {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      margin-top: 40px;
-    }
-    .cart-summary ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .cart-summary li {
-      margin-bottom: 10px;
-    }
-    .checkout-btn {
-      background-color: #10b981;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    footer {
-      background: #1f2937;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
+    :root {
+      --primary: #3b82f6;
+      --secondary: #1f2937;
+      --bg: #f9fafb;
+      --white: #ffffff;
+      --gray: #6b7280;
+    }* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--secondary);
+  line-height: 1.6;
+}
+
+header {
+  background: var(--secondary);
+  color: var(--white);
+  padding: 24px 0;
+  text-align: center;
+}
+
+nav a {
+  color: var(--white);
+  margin: 0 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+section {
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.portfolio-item, .product-item, .cart-summary {
+  background: var(--white);
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  margin-bottom: 32px;
+  transition: transform 0.2s;
+}
+
+.portfolio-item:hover, .product-item:hover, .cart-summary:hover {
+  transform: translateY(-4px);
+}
+
+.product-item img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.add-to-cart, .checkout-btn, .remove-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.add-to-cart {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.remove-btn {
+  background-color: #ef4444;
+  color: var(--white);
+  margin-left: 12px;
+  font-size: 0.875rem;
+}
+
+.checkout-btn {
+  background-color: #10b981;
+  color: var(--white);
+  margin-top: 16px;
+}
+
+.cart-summary ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+footer {
+  background: var(--secondary);
+  color: var(--white);
+  text-align: center;
+  padding: 24px;
+}
+
   </style>
   <script>
     let cart = [];function addToCart(product, price) {
@@ -90,14 +122,26 @@
   updateCart();
 }
 
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCart();
+}
+
 function updateCart() {
   const cartList = document.getElementById("cart-items");
   const cartTotal = document.getElementById("cart-total");
   cartList.innerHTML = "";
   let total = 0;
-  cart.forEach(item => {
+  cart.forEach((item, index) => {
     const li = document.createElement("li");
     li.textContent = item.name + " - R$ " + item.price.toFixed(2);
+
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remover";
+    removeBtn.className = "remove-btn";
+    removeBtn.onclick = () => removeFromCart(index);
+
+    li.appendChild(removeBtn);
     cartList.appendChild(li);
     total += item.price;
   });
@@ -109,9 +153,7 @@ function finalizarPedido() {
     alert("Seu carrinho está vazio.");
     return;
   }
-  alert("Pedido finalizado com sucesso! Em breve entraremos em contato.");
-  cart = [];
-  updateCart();
+  window.open("https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=EXEMPLO123", "_blank");
 }
 
   </script>
@@ -138,15 +180,15 @@ function finalizarPedido() {
     <h2>Serviços / Produtos</h2><div class="product-item">
   <h3>Camiseta Basica masculina Preta</h3>
   <img src="https://via.placeholder.com/300" alt="Produto 1">
-  <p>Descrição do produto 1. Ideal para [uso].</p>
+  <p>Confeccionada em cotton leve, proporciona uma sensação suave e fresca ao vestir. Ideal para usar como segunda pele.</p>
   <p><strong>Preço: R$ 99,90</strong></p>
   <button class="add-to-cart" onclick="addToCart('Produto 1', 99.90)">Adicionar ao Carrinho</button>
 </div>
 
 <div class="product-item">
-  <h3>Camiseta Feminina Moda Cristã </h3>
+  <h3>Camiseta Feminina Moda Cristã</h3>
   <img src="https://via.placeholder.com/300" alt="Produto 2">
-  <p>Descrição do produto 2. Perfeito para [benefício].</p>
+  <p>Confeccionada em cotton leve, proporciona uma sensação suave e fresca ao vestir. Perfeito para presentear quem você ama.</p>
   <p><strong>Preço: R$ 99,90</strong></p>
   <button class="add-to-cart" onclick="addToCart('Produto 2', 149.90)">Adicionar ao Carrinho</button>
 </div>
