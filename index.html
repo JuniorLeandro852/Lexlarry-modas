@@ -1,8 +1,9 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Portfólio</title>
+  <title>Lexlarry Modas</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -11,211 +12,232 @@
       --bg: #f9fafb;
       --white: #ffffff;
       --gray: #6b7280;
-    }* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--secondary);
-  line-height: 1.6;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-header {
-  background: var(--secondary);
-  color: var(--white);
-  padding: 24px 0;
-  text-align: center;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--secondary);
+      line-height: 1.6;
+    }
 
-nav a {
-  color: var(--white);
-  margin: 0 12px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
+    header {
+      background: var(--secondary);
+      color: var(--white);
+      padding: 24px 0;
+      text-align: center;
+    }
 
-nav a:hover {
-  color: var(--primary);
-}
+    header img.logo {
+      height: 60px;
+      margin-bottom: 10px;
+    }
 
-section {
-  padding: 60px 20px;
-  max-width: 1100px;
-  margin: auto;
-}
+    nav a {
+      color: var(--white);
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
 
-h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: var(--primary);
-}
+    nav a:hover {
+      color: var(--primary);
+    }
 
-.portfolio-item, .product-item, .cart-summary {
-  background: var(--white);
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  margin-bottom: 32px;
-  transition: transform 0.2s;
-}
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
 
-.portfolio-item:hover, .product-item:hover, .cart-summary:hover {
-  transform: translateY(-4px);
-}
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
 
-.product-item img {
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  border-radius: 12px;
-  margin-bottom: 12px;
-}
+    .product-item {
+      background: var(--white);
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      margin-bottom: 32px;
+      transition: transform 0.2s;
+      text-align: center;
+    }
 
-.add-to-cart, .checkout-btn, .remove-btn {
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-}
+    .product-item:hover {
+      transform: translateY(-4px);
+    }
 
-.add-to-cart {
-  background-color: var(--primary);
-  color: var(--white);
-}
+    .product-item img {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
 
-.remove-btn {
-  background-color: #ef4444;
-  color: var(--white);
-  margin-left: 12px;
-  font-size: 0.875rem;
-}
+    .add-to-cart, .checkout-btn, .remove-btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
 
-.checkout-btn {
-  background-color: #10b981;
-  color: var(--white);
-  margin-top: 16px;
-}
+    .add-to-cart {
+      background-color: var(--primary);
+      color: var(--white);
+    }
 
-.cart-summary ul {
-  list-style: none;
-  padding-left: 0;
-}
+    .remove-btn {
+      background-color: #ef4444;
+      color: var(--white);
+      margin-left: 12px;
+      font-size: 0.875rem;
+    }
 
-footer {
-  background: var(--secondary);
-  color: var(--white);
-  text-align: center;
-  padding: 24px;
-}
+    .checkout-btn {
+      background-color: #10b981;
+      color: var(--white);
+      margin-top: 16px;
+    }
 
+    .cart-summary {
+      background: var(--white);
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      margin-top: 40px;
+    }
+
+    .cart-summary ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    footer {
+      background: var(--secondary);
+      color: var(--white);
+      text-align: center;
+      padding: 24px;
+    }
+
+    a.whatsapp {
+      display: inline-block;
+      margin-top: 20px;
+      background: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    a.whatsapp:hover {
+      background: #1ebe5d;
+    }
   </style>
   <script>
-    let cart = [];function addToCart(product, price) {
-  cart.push({ name: product, price: price });
-  alert(product + ' adicionado ao carrinho!');
-  updateCart();
-}
+    let cart = [];
 
-function removeFromCart(index) {
-  cart.splice(index, 1);
-  updateCart();
-}
+    function addToCart(product, price) {
+      cart.push({ name: product, price: price });
+      alert(product + ' adicionado ao carrinho!');
+      updateCart();
+    }
 
-function updateCart() {
-  const cartList = document.getElementById("cart-items");
-  const cartTotal = document.getElementById("cart-total");
-  cartList.innerHTML = "";
-  let total = 0;
-  cart.forEach((item, index) => {
-    const li = document.createElement("li");
-    li.textContent = item.name + " - R$ " + item.price.toFixed(2);
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
 
-    const removeBtn = document.createElement("button");
-    removeBtn.textContent = "Remover";
-    removeBtn.className = "remove-btn";
-    removeBtn.onclick = () => removeFromCart(index);
+    function updateCart() {
+      const cartList = document.getElementById("cart-items");
+      const cartTotal = document.getElementById("cart-total");
+      cartList.innerHTML = "";
+      let total = 0;
+      cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.textContent = item.name + " - R$ " + item.price.toFixed(2);
 
-    li.appendChild(removeBtn);
-    cartList.appendChild(li);
-    total += item.price;
-  });
-  cartTotal.textContent = "Total: R$ " + total.toFixed(2);
-}
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "Remover";
+        removeBtn.className = "remove-btn";
+        removeBtn.onclick = () => removeFromCart(index);
 
-function finalizarPedido() {
-  if (cart.length === 0) {
-    alert("Seu carrinho está vazio.");
-    return;
-  }
-  window.open("https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=EXEMPLO123", "_blank");
-}
+        li.appendChild(removeBtn);
+        cartList.appendChild(li);
+        total += item.price;
+      });
+      cartTotal.textContent = "Total: R$ " + total.toFixed(2);
+    }
 
+    function finalizarPedido() {
+      if (cart.length === 0) {
+        alert("Seu carrinho está vazio.");
+        return;
+      }
+      window.open("https://wa.me/5511977897247?text=Ol%C3%A1%2C%20gostaria%20de%20finalizar%20um%20pedido%20da%20Lexlarry%20Modas!", "_blank");
+    }
   </script>
 </head>
 <body>
   <header>
+    <img class="logo" src="https://via.placeholder.com/150x60?text=Lexlarry+Logo" alt="Lexlarry Modas Logo">
     <h1>Lexlarry Modas</h1>
     <nav>
-      <a href="#sobre nós">sobre nós</a>
-      <a href="#Camisetas Masculinas"a>
-      <a href="#Camisetas Femininas"/a>
-      <a href="#Tenis">Tenis</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#produtos">Produtos</a>
       <a href="#contato">Contato</a>
     </nav>
-  </header>  <section id="sobre">
-    <h2>Camisetas Masculinas</h2>
-    <h3>Camiseta Basica masculina Preta</h3>
-  <img src="https://lexlarrymodas.com/imagens/camiseta-estampada.jpg" alt="Camiseta Masculina Estampada">
-  <p>Confeccionada em cotton leve, proporciona uma sensação suave e fresca ao vestir. Ideal para usar como segunda pele.</p>
-  <p><strong>Preço: R$ 99,90</strong></p>
-  <button class="add-to-cart" onclick="addToCart('Produto 1', 99.90)">Adicionar ao Carrinho</button>
-</div>
-    <h2>Camisetas Femininas</h2>
-     <h3>Camiseta Feminina Moda Cristã</h3>
-  <img src="https://lexlarrymodas.com/imagens/camiseta-estampada.jpg" alt="Camiseta Feminina Estampada">
-  <p>Confeccionada em cotton leve, proporciona uma sensação suave e fresca ao vestir. Perfeito para presentear quem você ama.</p>
-  <p><strong>Preço: R$ 99,90</strong></p>
-  <button class="add-to-cart" onclick="addToCart('Produto 2', 149.90)">Adicionar ao Carrinho</button>
-</div>
-  </section>  <section id="produtos">
-    <h2>Serviços / Produtos</h2><div class="product-item">
-  <h3>Camiseta Basica masculina Preta</h3>
-  <img src="https://lexlarrymodas.com/imagens/camiseta-estampada.jpg" alt="Camiseta Feminina Estampada">
-  <p>Confeccionada em cotton leve, proporciona uma sensação suave e fresca ao vestir. Ideal para usar como segunda pele.</p>
-  <p><strong>Preço: R$ 99,90</strong></p>
-  <button class="add-to-cart" onclick="addToCart('Produto 1', 99.90)">Adicionar ao Carrinho</button>
-</div>
+  </header>
 
-<div class="product-item">
-  <h3>Camiseta Feminina Moda Cristã</h3>
-  <img src="https://lexlarrymodas.com/imagens/camiseta-estampada.jpg" alt="Camiseta Feminina Estampada">
-  <p>Confeccionada em cotton leve, proporciona uma sensação suave e fresca ao vestir. Perfeito para presentear quem você ama.</p>
-  <p><strong>Preço: R$ 99,90</strong></p>
-  <button class="add-to-cart" onclick="addToCart('Produto 2', 149.90)">Adicionar ao Carrinho</button>
-</div>
+  <section id="produtos">
+    <h2>Produtos em Destaque</h2>
 
-<h3>Formas de Pagamento</h3>
-<p>Cartões de crédito (Visa, MasterCard, Elo), Pix e boleto bancário.</p>
+    <div class="product-item">
+      <h3>Camiseta Básica Preta Masculina</h3>
+      <img src="https://images.unsplash.com/photo-1602810316494-42dfb2d2517d" alt="Camiseta Preta Masculina">
+      <p>Algodão premium, confortável e estilosa. Ideal para o dia a dia.</p>
+      <p><strong>Preço: R$ 99,90</strong></p>
+      <button class="add-to-cart" onclick="addToCart('Camiseta Básica Preta', 99.90)">Adicionar ao Carrinho</button>
+    </div>
 
-<div class="cart-summary">
-  <h3>Meu Carrinho</h3>
-  <ul id="cart-items"></ul>
-  <p id="cart-total">Total: R$ 0,00</p>
-  <button class="checkout-btn" onclick="finalizarPedido()">Finalizar Pedido</button>
-</div>
+    <div class="product-item">
+      <h3>Camiseta Feminina Estampada</h3>
+      <img src="https://images.unsplash.com/photo-1598970434795-0c54fe7c0642" alt="Camiseta Estampada Feminina">
+      <p>Design exclusivo com toque suave. Ideal para quem busca estilo e fé.</p>
+      <p><strong>Preço: R$ 129,90</strong></p>
+      <button class="add-to-cart" onclick="addToCart('Camiseta Feminina Estampada', 129.90)">Adicionar ao Carrinho</button>
+    </div>
 
-  </section>  <section id="contato">
+    <div class="cart-summary">
+      <h3>Meu Carrinho</h3>
+      <ul id="cart-items"></ul>
+      <p id="cart-total">Total: R$ 0,00</p>
+      <button class="checkout-btn" onclick="finalizarPedido()">Finalizar Pedido via WhatsApp</button>
+    </div>
+  </section>
+
+  <section id="contato">
     <h2>Contato</h2>
-    <p>Email: <a href="mailto:seuemail@exemplo.com">Lexlarry.modas@gmail.com</a></p>
-    <p>WhatsApp: (11) 97789-7247</p>
-  </section>  <footer>
-    <p>&copy; 2025 Lexlarry modas. Todos os direitos reservados.</p>
+    <p>Email: <a href="mailto:lexlarry.modas@gmail.com">lexlarry.modas@gmail.com</a></p>
+    <p>WhatsApp: <a href="https://wa.me/5511977897247" target="_blank">(11) 97789-7247</a></p>
+    <a class="whatsapp" href="https://wa.me/5511977897247" target="_blank">Fale Conosco pelo WhatsApp</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Lexlarry Modas. Todos os direitos reservados.</p>
   </footer>
 </body>
 </html>
