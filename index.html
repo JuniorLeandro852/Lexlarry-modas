@@ -31,7 +31,42 @@
       font-weight: 700;
       font-size: 1.8rem;
       user-select: none;
+      flex-grow: 1;
+      margin-left: 1rem;
     }
+    nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      user-select: none;
+    }
+    nav button {
+      background: transparent;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    nav button:hover, nav button.active {
+      background-color: #25D366;
+      color: #000;
+    }
+
+    /* Frase marketing */
+    #marketing-phrase {
+      background-color: #25D366;
+      color: white;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      padding: 0.8rem 1rem;
+      user-select: none;
+    }
+
     main {
       padding: 2rem;
       max-width: 1200px;
@@ -181,6 +216,14 @@
       box-shadow: 0 4px 14px rgba(0,0,0,0.3);
     }
 
+    /* Sections hidden by default except products */
+    section.content-section {
+      display: none;
+    }
+    section.content-section.active {
+      display: block;
+    }
+
     /* Responsive adjustments */
     @media(max-width: 768px) {
       aside.cart {
@@ -193,6 +236,10 @@
         justify-content: center;
         gap: 1rem;
       }
+      nav {
+        justify-content: center;
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -200,10 +247,43 @@
   <header>
     <img src="logo.png" alt="Logo da Lexlarry Modas" class="logo" />
     <h1>Lexlarry Modas</h1>
+    <nav aria-label="Menu principal">
+      <button class="active" onclick="showSection('products-section', this)">Produtos</button>
+      <button onclick="showSection('contacts-section', this)">Contatos</button>
+      <button onclick="showSection('about-section', this)">Sobre Lexlarry Modas</button>
+    </nav>
   </header>
 
+  <div id="marketing-phrase" aria-live="polite">
+    Estilo e sofisticação que transformam seu visual!
+  </div>
+
   <main>
-    <section class="products" id="product-list"></section>
+    <!-- Produtos -->
+    <section id="products-section" class="content-section active">
+      <div class="products" id="product-list"></div>
+    </section>
+
+    <!-- Contatos -->
+    <section id="contacts-section" class="content-section" tabindex="0" aria-label="Informações de contato">
+      <h2>Contatos</h2>
+      <p>Telefone: <a href="tel:+5599999999999">(99) 99999-9999</a></p>
+      <p>Email: <a href="mailto:contato@lexlarrymodas.com">contato@lexlarrymodas.com</a></p>
+      <p>Endereço: Rua Exemplo, 123 - Cidade, Estado</p>
+      <p>Siga-nos nas redes sociais:</p>
+      <ul>
+        <li><a href="#" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+        <li><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="#" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+      </ul>
+    </section>
+
+    <!-- Sobre -->
+    <section id="about-section" class="content-section" tabindex="0" aria-label="Sobre a Lexlarry Modas">
+      <h2>Sobre Lexlarry Modas</h2>
+      <p>Na Lexlarry Modas, oferecemos roupas e acessórios que unem estilo, conforto e sofisticação para você se sentir único(a) em qualquer ocasião. Nosso compromisso é proporcionar a melhor experiência de compra e a qualidade que você merece.</p>
+      <p>Estamos sempre atualizados com as últimas tendências e prezamos pelo atendimento personalizado aos nossos clientes.</p>
+    </section>
   </main>
 
   <aside class="cart" aria-label="Carrinho de compras">
@@ -222,112 +302,4 @@
     <button class="checkout-site-btn" onclick="finalizarNoSite()" aria-label="Finalizar compra pelo site">
       Finalizar pelo Site
     </button>
-    <button class="checkout-btn" onclick="finalizarPedido()" aria-label="Finalizar pedido via WhatsApp">
-      Finalizar Pedido pelo WhatsApp
-    </button>
-  </aside>
-
-  <div id="qr-container" title="Clique para abrir o WhatsApp">
-    <img src="whatsapp-qr.png" alt="QR Code WhatsApp Lexlarry Modas" />
-  </div>
-
-  <script>
-    const products = [
-      { name: "Camiseta Oversized Masculina", price: 59.90, image: "produto1.jpg" },
-      { name: "Vestido Longo Floral Feminino", price: 129.90, image: "produto2.jpg" },
-      { name: "Jaqueta Jeans Masculina", price: 199.90, image: "produto3.jpg" },
-      { name: "Saia Midi Plissada", price: 89.90, image: "produto4.jpg" },
-      { name: "Camisa Social Slim", price: 109.90, image: "produto5.jpg" },
-      { name: "Moletom Unissex com Capuz", price: 149.90, image: "produto6.jpg" }
-    ];
-
-    let cart = [];
-
-    const productList = document.getElementById("product-list");
-    const cartItems = document.getElementById("cart-items");
-    const paymentMethodSelect = document.getElementById("payment-method");
-
-    const phoneNumber = "5511977897247"; // Coloque seu número real aqui (DDI + DDD + número)
-
-    function renderProducts() {
-      productList.innerHTML = "";
-      products.forEach((product, index) => {
-        const productElement = document.createElement("div");
-        productElement.className = "product";
-        productElement.innerHTML = `
-          <img src="${product.image}" alt="${product.name}" loading="lazy" />
-          <h3>${product.name}</h3>
-          <p>R$ ${product.price.toFixed(2).replace('.', ',')}</p>
-          <button aria-label="Adicionar ${product.name} ao carrinho" onclick="addToCart(${index})">Adicionar ao Carrinho</button>
-        `;
-        productList.appendChild(productElement);
-      });
-    }
-
-    function addToCart(index) {
-      cart.push(products[index]);
-      renderCart();
-    }
-
-    function renderCart() {
-      cartItems.innerHTML = "";
-      cart.forEach((item, i) => {
-        const li = document.createElement("li");
-        li.textContent = `${item.name} - R$ ${item.price.toFixed(2).replace('.', ',')}`;
-        cartItems.appendChild(li);
-      });
-    }
-
-    function finalizarPedido() {
-      if (cart.length === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
-      }
-      const formaPagamento = paymentMethodSelect.value;
-      if (!formaPagamento) {
-        alert("Por favor, selecione a forma de pagamento.");
-        return;
-      }
-
-      const message = encodeURIComponent(
-        "Olá, gostaria de fazer um pedido:%0A" +
-        cart.map(item => `${item.name} - R$ ${item.price.toFixed(2).replace('.', ',')}`).join("%0A") +
-        `%0AForma de pagamento: ${formaPagamento}`
-      );
-      const url = `https://wa.me/${5511977897247}?text=${message}`;
-      window.open(url, "_blank");
-    }
-
-    function finalizarNoSite() {
-      if (cart.length === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
-      }
-      const formaPagamento = paymentMethodSelect.value;
-      if (!formaPagamento) {
-        alert("Por favor, selecione a forma de pagamento.");
-        return;
-      }
-      // Aqui pode colocar integração real de pagamento futuramente
-      alert(`Pedido finalizado com sucesso!\nForma de pagamento: ${formaPagamento}\nTotal: R$ ${calcularTotal().toFixed(2).replace('.', ',')}`);
-      // Limpar carrinho e resetar forma pagamento:
-      cart = [];
-      renderCart();
-      paymentMethodSelect.value = "";
-    }
-
-    function calcularTotal() {
-      return cart.reduce((total, item) => total + item.price, 0);
-    }
-
-    // QR code clicável abre WhatsApp direto
-    const qrContainer = document.getElementById("qr-container");
-    qrContainer.addEventListener("click", () => {
-      const url = `https://wa.me/${5511977897247}`;
-      window.open(url, "_blank");
-    });
-
-    renderProducts();
-  </script>
-</body>
-</html>
+    <button class="checkout
