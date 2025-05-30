@@ -249,14 +249,14 @@
         "Olá, gostaria de fazer um pedido:%0A" +
         cart.map(item => `${item.name} - R$ ${item.price.toFixed(2).replace('.', ',')}`).join("%0A")
       );
-      const url = `https://wa.me/${phoneNumber}?text=${message}`;
+      const url = `https://wa.me/${5511977897247}?text=${message}`;
       window.open(url, "_blank");
     }
 
     // QR code clicável abre WhatsApp direto
     const qrContainer = document.getElementById("qr-container");
     qrContainer.addEventListener("click", () => {
-      const url = `https://wa.me/${phoneNumber}`;
+      const url = `https://wa.me/${5511977897247}`;
       window.open(url, "_blank");
     });
 
