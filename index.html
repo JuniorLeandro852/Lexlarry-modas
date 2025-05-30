@@ -1,480 +1,181 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Loja online da Lexlarry Modas - estilo, conforto e sofisticação em roupas e acessórios.">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <title>Lexlarry Modas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ====== Variáveis e Reset ====== */
-    :root {
-      --primary: #3b82f6;
-      --secondary: #1f2937;
-      --bg: #f9fafb;
-      --white: #ffffff;
-      --gray: #6b7280;
-    }
-
-    * {
+    body {
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      background-color: #f5f5f5;
+      color: #333;
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--secondary);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ====== Header ====== */
     header {
-      background: var(--secondary);
-      color: var(--white);
-      padding: 24px 0;
-      text-align: center;
-    }
-
-    header img.logo {
-      height: 60px;
-      margin-bottom: 10px;
-    }
-
-    nav a {
-      color: var(--white);
-      margin: 0 12px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: var(--primary);
-    }
-
-    /* ====== Layout Principal ====== */
-    main {
-      flex: 1;
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-      width: 100%;
-    }
-
-    section {
-      margin-bottom: 60px;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: var(--primary);
-      text-align: center;
-    }
-
-    /* ====== Seção Sobre ====== */
-    #sobre p {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: 1.125rem;
-      color: var(--gray);
-      text-align: center;
-      line-height: 1.8;
-    }
-
-    /* ====== Produtos ====== */
-    #produtos .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
-
-    .product-item {
-      background: var(--white);
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      text-align: center;
-      transition: transform 0.2s ease;
+      background-color: #000;
+      color: white;
+      padding: 1rem;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .product-item:hover {
-      transform: translateY(-6px);
-    }
-
-    .product-item img {
-      max-width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      flex-shrink: 0;
-    }
-
-    .product-item h3 {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-      color: var(--secondary);
-    }
-
-    .product-item p {
-      flex-grow: 1;
-      font-size: 0.95rem;
-      color: var(--gray);
-      margin-bottom: 12px;
-    }
-
-    .product-item strong {
-      display: block;
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-      color: var(--primary);
-    }
-
-    .add-to-cart {
-      background-color: var(--primary);
-      color: var(--white);
-      padding: 12px;
-      border-radius: 8px;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .add-to-cart:hover {
-      background-color: #2563eb;
-    }
-
-    /* ====== Carrinho ====== */
-    .cart-summary {
-      background: var(--white);
-      padding: 24px;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      margin-top: 40px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cart-summary h3 {
-      margin-bottom: 16px;
-      color: var(--primary);
-      text-align: center;
-    }
-
-    .cart-summary ul {
-      list-style: none;
-      padding-left: 0;
-      max-height: 180px;
-      overflow-y: auto;
-      margin-bottom: 16px;
-      border-top: 1px solid #ddd;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .cart-summary ul li {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-      font-size: 1rem;
-      color: var(--secondary);
+      justify-content: space-between;
     }
 
-    .remove-btn {
-      background-color: #ef4444;
-      color: var(--white);
-      border: none;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+    .logo {
+      height: 50px;
     }
 
-    .remove-btn:hover {
-      background-color: #dc2626;
+    main {
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .product:hover {
+      transform: scale(1.03);
+    }
+
+    .product img {
+      max-width: 100%;
+      border-radius: 8px;
+      height: auto;
+    }
+
+    .cart {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      width: 300px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .cart h2 {
+      margin-top: 0;
     }
 
     .checkout-btn {
-      background-color: #10b981;
-      color: var(--white);
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: 600;
+      background-color: #25D366;
+      color: white;
       border: none;
+      padding: 0.75rem 1.5rem;
       cursor: pointer;
+      border-radius: 5px;
       width: 100%;
-      font-size: 1.1rem;
-      transition: background-color 0.3s ease;
+      margin-top: 1rem;
+      font-weight: bold;
+      transition: background-color 0.3s;
     }
 
     .checkout-btn:hover {
-      background-color: #059669;
+      background-color: #1ebe5d;
     }
-
-    /* ====== Contato ====== */
-    #contato {
-      text-align: center;
-    }
-
-    #contato a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    a.whatsapp {
-      display: inline-block;
-      margin-top: 20px;
-      background: #25D366;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
-
-    a.whatsapp:hover {
-      background: #1ebe5d;
-    }
-
-    /* ====== Footer ====== */
-    footer {
-      background: var(--secondary);
-      color: var(--white);
-      text-align: center;
-      padding: 24px;
-      font-size: 0.9rem;
-    }
-
-    /* ====== Responsividade ====== */
-    @media (max-width: 480px) {
-      .product-item img {
-        height: 160px;
-      }
-
-      .add-to-cart, .remove-btn, .checkout-btn {
-        font-size: 0.9rem;
-        padding: 10px;
-      }
-    }
-
   </style>
 </head>
 <body>
+  <!-- Header com logo -->
   <header>
-    <img class="logo" src="https://via.placeholder.com/150x60?text=Lexlarry+Logo" alt="Lexlarry Modas Logo" />
+    <img src="logo.png" alt="Logo da Lexlarry Modas" class="logo">
     <h1>Lexlarry Modas</h1>
-    <nav>
-      <a href="#sobre">Sobre</a>
-      <a href="#produtos">Produtos</a>
-      <a href="#contato">Contato</a>
-    </nav>
   </header>
 
+  <!-- Lista de Produtos -->
   <main>
-    <section id="sobre">
-      <h2>Sobre a Marca</h2>
-      <p>
-        A Lexlarry Modas é uma marca que une estilo, conforto e qualidade para você se vestir bem em qualquer ocasião.
-        Nossos produtos são cuidadosamente selecionados para refletir as últimas tendências da moda com um toque de
-        sofisticação e autenticidade.
-      </p>
-    </section>
-
-    <section id="produtos">
-      <h2>Produtos em Destaque</h2>
-      <div class="products-grid" id="products-grid">
-        <!-- Produtos serão inseridos aqui via JS -->
-      </div>
-
-      <div class="cart-summary">
-        <h3>Meu Carrinho</h3>
-        <ul id="cart-items"></ul>
-        <p id="cart-total">Total: R$ 0,00</p>
-        <button class="checkout-btn" onclick="finalizarPedido()">Finalizar Pedido via WhatsApp</button>
-      </div>
-    </section>
-
-    <section id="contato">
-      <h2>Contato</h2>
-      <p>Email: <a href="mailto:lexlarry.modas@gmail.com">lexlarry.modas@gmail.com</a></p>
-      <p>WhatsApp: <a href="https://wa.me/5511977897247" target="_blank">(11) 97789-7247</a></p>
-      <a class="whatsapp" href="https://wa.me/5511977897247" target="_blank">Fale Conosco pelo WhatsApp</a>
-    </section>
+    <section class="products" id="product-list"></section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Lexlarry Modas. Todos os direitos reservados.</p>
-  </footer>
+  <!-- Carrinho -->
+  <aside class="cart">
+    <h2>Carrinho</h2>
+    <ul id="cart-items"></ul>
+    <button class="checkout-btn" onclick="finalizarPedido()" aria-label="Finalizar pedido via WhatsApp">
+      Finalizar Pedido
+    </button>
+  </aside>
 
+  <!-- JavaScript -->
   <script>
-    // Lista de produtos para gerar dinamicamente
     const products = [
-      {
-        name: "Camiseta Básica Preta Masculina",
-        price: 99.90,
-        desc: "Algodão premium, confortável e estilosa. Ideal para o dia a dia.",
-        img: "https://images.unsplash.com/photo-1602810316494-42dfb2d2517d?auto=format&fit=crop&w=800&q=80",
-      },
-      {
-        name: "Camiseta Feminina Estampada",
-        price: 129.90,
-        desc: "Design exclusivo com toque suave. Ideal para quem busca estilo e fé.",
-        img: "https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=800&q=80",
-      },
-      {
-        name: "Jaqueta Jeans Masculina",
-        price: 189.90,
-        desc: "Jaqueta jeans clássica, resistente e com acabamento premium.",
-        img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80",
-      },
-      {
-        name: "Calça Skinny Feminina",
-        price: 159.90,
-        desc: "Calça skinny confortável, perfeita para diversas ocasiões.",
-        img: "https://images.unsplash.com/photo-1521335629791-ce4aec67dd49?auto=format&fit=crop&w=800&q=80",
-      },
-      {
-        name: "Vestido Casual Floral",
-        price: 179.90,
-        desc: "Vestido leve com estampa floral, ideal para dias quentes.",
-        img: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
-      },
-      {
-        name: "Moletom Unissex com Capuz",
-        price: 139.90,
-        desc: "Moletom macio e confortável, com capuz ajustável.",
-        img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80",
-      },
-      {
-        name: "Tênis Casual Masculino",
-        price: 229.90,
-        desc: "Tênis estiloso para uso diário com excelente conforto.",
-        img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
-      },
-      {
-        name: "Bolsa de Couro Feminina",
-        price: 299.90,
-        desc: "Bolsa de couro legítimo, sofisticada e prática.",
-        img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-      },
-      {
-        name: "Camisa Social Masculina",
-        price: 159.90,
-        desc: "Camisa social de algodão com corte moderno.",
-        img: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
-      },
-      {
-        name: "Saia Midi Plissada",
-        price: 139.90,
-        desc: "Saia midi plissada, elegante e confortável.",
-        img: "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=800&q=80",
-      },
-      {
-        name: "Relógio Minimalista Unissex",
-        price: 349.90,
-        desc: "Relógio com design minimalista, combina com tudo.",
-        img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80",
-      },
-      {
-        name: "Óculos de Sol Fashion",
-        price: 189.90,
-        desc: "Óculos de sol com proteção UV e design moderno.",
-        img: "https://images.unsplash.com/photo-1512418490979-92798cec7f46?auto=format&fit=crop&w=800&q=80",
-      },
+      { name: "Camiseta Oversized Masculina", price: 59.90, image: "produto1.jpg" },
+      { name: "Vestido Longo Floral Feminino", price: 129.90, image: "produto2.jpg" },
+      { name: "Jaqueta Jeans Masculina", price: 199.90, image: "produto3.jpg" },
+      { name: "Saia Midi Plissada", price: 89.90, image: "produto4.jpg" },
+      { name: "Camisa Social Slim", price: 109.90, image: "produto5.jpg" },
+      { name: "Moletom Unissex com Capuz", price: 149.90, image: "produto6.jpg" }
     ];
 
-    const productsGrid = document.getElementById('products-grid');
-    const cartItems = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    let cart = [];
+    const cart = [];
 
-    // Função para criar elementos do produto
-    function createProductItem(product, index) {
-      const div = document.createElement('div');
-      div.className = 'product-item';
+    const productList = document.getElementById("product-list");
+    const cartItems = document.getElementById("cart-items");
 
-      div.innerHTML = `
-        <img src="${product.img}" alt="${product.name}" />
-        <h3>${product.name}</h3>
-        <p>${product.desc}</p>
-        <strong>R$ ${product.price.toFixed(2)}</strong>
-        <button class="add-to-cart" data-index="${index}">Adicionar ao Carrinho</button>
-      `;
-
-      // Event listener para o botão
-      div.querySelector('button').addEventListener('click', () => {
-        addToCart(product.name, product.price);
-      });
-
-      return div;
-    }
-
-    // Renderiza todos os produtos
     function renderProducts() {
-      productsGrid.innerHTML = '';
-      products.forEach((product, i) => {
-        productsGrid.appendChild(createProductItem(product, i));
+      products.forEach((product, index) => {
+        const productElement = document.createElement("div");
+        productElement.className = "product";
+        productElement.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <p>R$ ${product.price.toFixed(2).replace('.', ',')}</p>
+          <button onclick="addToCart(${index})">Adicionar ao Carrinho</button>
+        `;
+        productList.appendChild(productElement);
       });
     }
 
-    function addToCart(name, price) {
-      cart.push({ name, price });
-      alert(`${name} adicionado ao carrinho!`);
-      updateCart();
+    function addToCart(index) {
+      cart.push(products[index]);
+      renderCart();
     }
 
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCart();
-    }
-
-    function updateCart() {
-      cartItems.innerHTML = '';
-      let total = 0;
-      cart.forEach((item, index) => {
-        const li = document.createElement('li');
-        li.textContent = `${item.name} - R$ ${item.price.toFixed(2)}`;
-
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remover';
-        removeBtn.className = 'remove-btn';
-        removeBtn.onclick = () => removeFromCart(index);
-
-        li.appendChild(removeBtn);
-        cartItems.appendChild(li);
-        total += item.price;
+    function renderCart() {
+      cartItems.innerHTML = "";
+      cart.forEach((item, i) => {
+        const itemElement = document.createElement("li");
+        itemElement.textContent = `${item.name} - R$ ${item.price.toFixed(2).replace('.', ',')}`;
+        cartItems.appendChild(itemElement);
       });
-      cartTotal.textContent = `Total: R$ ${total.toFixed(2)}`;
     }
 
     function finalizarPedido() {
       if (cart.length === 0) {
-        alert("Seu carrinho está vazio.");
+        alert("Seu carrinho está vazio!");
         return;
       }
-      const itemsText = cart.map(item => `${item.name} - R$ ${item.price.toFixed(2)}`).join("%0A");
-      const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
-      const msg = encodeURIComponent(`Olá, gostaria de finalizar um pedido da Lexlarry Modas:%0A${itemsText}%0ATotal: R$ ${total}`);
-      window.open(`https://wa.me/5511977897247?text=${msg}`, '_blank');
+
+      const message = cart.map(item => `${item.name} - R$ ${item.price.toFixed(2).replace('.', ',')}`).join("%0A");
+      const phoneNumber = "SEU_NUMERO_AQUI"; // Ex: 5599999999999
+      const url = `https://wa.me/${phoneNumber}?text=Ol%C3%A1,%20gostaria%20de%20fazer%20um%20pedido:%0A${message}`;
+      window.open(url, "_blank");
     }
 
-    // Inicializa
     renderProducts();
-    updateCart();
   </script>
 </body>
 </html>
