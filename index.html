@@ -247,7 +247,7 @@
     const cartItems = document.getElementById("cart-items");
     const paymentMethodSelect = document.getElementById("payment-method");
 
-    const phoneNumber = "5599999999999"; // Coloque seu número real aqui (DDI + DDD + número)
+    const phoneNumber = "55977897247"; // Coloque seu número real aqui (DDI + DDD + número)
 
     function renderProducts() {
       productList.innerHTML = "";
@@ -294,7 +294,7 @@
         cart.map(item => `${item.name} - R$ ${item.price.toFixed(2).replace('.', ',')}`).join("%0A") +
         `%0AForma de pagamento: ${formaPagamento}`
       );
-      const url = `https://wa.me/${phoneNumber}?text=${message}`;
+      const url = `https://wa.me/${55977897247}?text=${message}`;
       window.open(url, "_blank");
     }
 
@@ -323,7 +323,7 @@
     // QR code clicável abre WhatsApp direto
     const qrContainer = document.getElementById("qr-container");
     qrContainer.addEventListener("click", () => {
-      const url = `https://wa.me/${phoneNumber}`;
+      const url = `https://wa.me/${55977897247}`;
       window.open(url, "_blank");
     });
 
