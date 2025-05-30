@@ -302,4 +302,119 @@
     <button class="checkout-site-btn" onclick="finalizarNoSite()" aria-label="Finalizar compra pelo site">
       Finalizar pelo Site
     </button>
-    <button class="checkout
+    <button class="checkout-btn" onclick="finalizarCompra()" aria-label="Finalizar compra pelo WhatsApp">
+      Finalizar pelo WhatsApp
+    </button>
+  </aside>
+
+  <!-- QR Code do WhatsApp -->
+  <div id="qr-container" title="Clique para conversar no WhatsApp" role="button" tabindex="0" aria-pressed="false" onclick="abrirWhatsApp()" onkeypress="if(event.key==='Enter'){abrirWhatsApp()}">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Ícone do WhatsApp" />
+  </div>
+
+  <script>
+    // Dados dos produtos (exemplo)
+    const produtos = [
+      { id: 1, nome: "Blusa Casual Feminina", preco: 79.90, imagem: "produtos/blusa1.jpg" },
+      { id: 2, nome: "Camisa Social Masculina", preco: 129.90, imagem: "produtos/camisa1.jpg" },
+      { id: 3, nome: "Vestido Estampado", preco: 149.90, imagem: "produtos/vestido1.jpg" },
+      { id: 4, nome: "Calça Jeans Masculina", preco: 99.90, imagem: "produtos/calca1.jpg" },
+      { id: 5, nome: "Acessórios Femininos", preco: 49.90, imagem: "produtos/acessorio1.jpg" }
+    ];
+
+    const carrinho = [];
+
+    function showSection(sectionId, btn) {
+      // Esconder todas as seções
+      document.querySelectorAll('section.content-section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      // Mostrar a seção escolhida
+      document.getElementById(sectionId).classList.add('active');
+
+      // Atualizar botão ativo no menu
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function renderizarProdutos() {
+      const container = document.getElementById('product-list');
+      container.innerHTML = '';
+      produtos.forEach(prod => {
+        const card = document.createElement('div');
+        card.className = 'product';
+        card.innerHTML = `
+          <img src="${prod.imagem}" alt="${prod.nome}" loading="lazy" />
+          <h3>${prod.nome}</h3>
+          <p>R$ ${prod.preco.toFixed(2).replace('.', ',')}</p>
+          <button onclick="adicionarAoCarrinho(${prod.id})" aria-label="Adicionar ${prod.nome} ao carrinho">Adicionar ao Carrinho</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function adicionarAoCarrinho(id) {
+      const produto = produtos.find(p => p.id === id);
+      if (!produto) return;
+
+      const itemNoCarrinho = carrinho.find(i => i.id === id);
+      if (itemNoCarrinho) {
+        itemNoCarrinho.quantidade++;
+      } else {
+        carrinho.push({ ...produto, quantidade: 1 });
+      }
+      atualizarCarrinho();
+      alert(`${produto.nome} adicionado ao carrinho.`);
+    }
+
+    function atualizarCarrinho() {
+      const ul = document.getElementById('cart-items');
+      ul.innerHTML = '';
+      if (carrinho.length === 0) {
+        ul.innerHTML = '<li>Carrinho vazio.</li>';
+        return;
+      }
+      carrinho.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.nome} - ${item.quantidade} x R$ ${item.preco.toFixed(2).replace('.', ',')}`;
+        ul.appendChild(li);
+      });
+    }
+
+    function finalizarCompra() {
+      if (carrinho.length === 0) {
+        alert('Seu carrinho está vazio!');
+        return;
+      }
+      const formaPagamento = document.getElementById('payment-method').value;
+      if (!formaPagamento) {
+        alert('Por favor, selecione a forma de pagamento.');
+        return;
+      }
+
+      let mensagem = `Olá! Gostaria de fazer um pedido:\n\n`;
+      carrinho.forEach(item => {
+        mensagem += `${item.quantidade} x ${item.nome} - R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}\n`;
+      });
+      const total = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
+      mensagem += `\nTotal: R$ ${total.toFixed(2).replace('.', ',')}\n`;
+      mensagem += `Forma de pagamento: ${formaPagamento}`;
+
+      const url = `https://api.whatsapp.com/send?phone=5599999999999&text=${encodeURIComponent(mensagem)}`;
+      window.open(url, '_blank');
+    }
+
+    function finalizarNoSite() {
+      alert('Finalização pelo site ainda não está disponível. Por favor, finalize pelo WhatsApp.');
+    }
+
+    function abrirWhatsApp() {
+      window.open('https://api.whatsapp.com/send?phone=5599999999999', '_blank');
+    }
+
+    // Inicializa
+    renderizarProdutos();
+    atualizarCarrinho();
+  </script>
+</body>
+</html>
