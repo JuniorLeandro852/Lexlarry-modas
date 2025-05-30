@@ -12,6 +12,7 @@
       margin: 0; padding: 0; box-sizing: border-box;
       background-color: #f5f5f5;
       color: #333;
+      padding-bottom: 220px; /* espaço para o rodapé do carrinho */
     }
     header {
       background-color: #000;
@@ -120,66 +121,76 @@
       background-color: #1ebe5d;
     }
 
-    aside.cart {
+    /* Rodapé do carrinho */
+    footer.cart {
       position: fixed;
-      top: 100px;
-      right: 20px;
-      width: 320px;
-      max-height: 75vh;
-      overflow-y: auto;
+      bottom: 0;
+      left: 0;
+      width: 100%;
       background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-      padding: 1rem;
-      z-index: 10;
+      border-top: 2px solid #25D366;
+      padding: 1rem 2rem;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      z-index: 15;
+      max-height: 200px;
+      overflow-y: auto;
     }
-    aside.cart h2 {
-      margin-top: 0;
+    footer.cart h2 {
+      margin: 0 1rem 0 0;
       font-weight: 700;
-      border-bottom: 2px solid #25D366;
-      padding-bottom: 0.3rem;
+      color: #25D366;
+      flex-shrink: 0;
     }
     #cart-items {
       list-style: none;
       padding: 0;
-      margin: 0.5rem 0;
-      max-height: 280px;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      flex-grow: 1;
+      max-height: 130px;
       overflow-y: auto;
+      font-size: 0.9rem;
+      color: #333;
     }
     #cart-items li {
-      padding: 0.3rem 0;
-      border-bottom: 1px solid #eee;
-      font-size: 0.95rem;
+      background: #e6f9e8;
+      padding: 0.3rem 0.6rem;
+      border-radius: 12px;
+      border: 1px solid #25D366;
     }
 
     label {
-      display: block;
-      margin-top: 1rem;
+      flex-shrink: 0;
       font-weight: 600;
       color: #444;
       user-select: none;
     }
     select {
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.3rem;
+      padding: 0.4rem 0.8rem;
       border-radius: 5px;
       border: 1px solid #ccc;
       font-size: 1rem;
+      flex-shrink: 0;
     }
 
     .checkout-btn, .checkout-site-btn {
       background-color: #25D366;
       color: white;
       border: none;
-      padding: 0.8rem 1.5rem;
+      padding: 0.7rem 1.2rem;
       cursor: pointer;
       border-radius: 6px;
       font-weight: bold;
-      width: 100%;
-      margin-top: 1rem;
       transition: background-color 0.3s;
       font-size: 1rem;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
     .checkout-btn:hover, .checkout-site-btn:hover {
       background-color: #1ebe5d;
@@ -191,10 +202,10 @@
       background-color: #0d6b60;
     }
 
-    /* QR Code container */
+    /* QR Code do WhatsApp */
     #qr-container {
       position: fixed;
-      bottom: 20px;
+      bottom: 220px;
       right: 20px;
       background: white;
       border-radius: 12px;
@@ -216,7 +227,7 @@
       box-shadow: 0 4px 14px rgba(0,0,0,0.3);
     }
 
-    /* Sections hidden by default except products */
+    /* Seções ocultas/exibidas */
     section.content-section {
       display: none;
     }
@@ -224,21 +235,54 @@
       display: block;
     }
 
-    /* Responsive adjustments */
+    /* Modal simples para confirmação */
+    #modal-confirm {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 30;
+    }
+    #modal-confirm .content {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    #modal-confirm button {
+      margin-top: 1.5rem;
+      padding: 0.7rem 1.3rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background-color: #25D366;
+      color: white;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+    #modal-confirm button:hover {
+      background-color: #1ebe5d;
+    }
+
+    /* Responsividade */
     @media(max-width: 768px) {
-      aside.cart {
-        position: static;
-        width: 100%;
+      footer.cart {
+        flex-direction: column;
         max-height: none;
-        margin-top: 1rem;
+        padding: 1rem;
+        overflow-y: visible;
       }
-      header {
-        justify-content: center;
-        gap: 1rem;
+      #cart-items {
+        max-height: none;
+        justify-content: start;
       }
-      nav {
-        justify-content: center;
-        width: 100%;
+      main {
+        padding-bottom: 1rem;
       }
     }
   </style>
@@ -267,7 +311,7 @@
     <!-- Contatos -->
     <section id="contacts-section" class="content-section" tabindex="0" aria-label="Informações de contato">
       <h2>Contatos</h2>
-      <p>Telefone: <a href="tel:+5599999999999">(99) 99999-9999</a></p>
+      <p>Telefone: <a href="tel:+5511977897247">(11) 977897247</a></p>
       <p>Email: <a href="mailto:contato@lexlarrymodas.com">contato@lexlarrymodas.com</a></p>
       <p>Endereço: Rua Exemplo, 123 - Cidade, Estado</p>
       <p>Siga-nos nas redes sociais:</p>
@@ -286,7 +330,8 @@
     </section>
   </main>
 
-  <aside class="cart" aria-label="Carrinho de compras">
+  <!-- Rodapé do carrinho -->
+  <footer class="cart" aria-label="Carrinho de compras">
     <h2>Carrinho</h2>
     <ul id="cart-items" aria-live="polite" aria-relevant="additions removals"></ul>
 
@@ -305,116 +350,11 @@
     <button class="checkout-btn" onclick="finalizarCompra()" aria-label="Finalizar compra pelo WhatsApp">
       Finalizar pelo WhatsApp
     </button>
-  </aside>
+  </footer>
 
   <!-- QR Code do WhatsApp -->
   <div id="qr-container" title="Clique para conversar no WhatsApp" role="button" tabindex="0" aria-pressed="false" onclick="abrirWhatsApp()" onkeypress="if(event.key==='Enter'){abrirWhatsApp()}">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Ícone do WhatsApp" />
   </div>
 
-  <script>
-    // Dados dos produtos (exemplo)
-    const produtos = [
-      { id: 1, nome: "Blusa Casual Feminina", preco: 79.90, imagem: "produtos/blusa1.jpg" },
-      { id: 2, nome: "Camisa Social Masculina", preco: 129.90, imagem: "produtos/camisa1.jpg" },
-      { id: 3, nome: "Vestido Estampado", preco: 149.90, imagem: "produtos/vestido1.jpg" },
-      { id: 4, nome: "Calça Jeans Masculina", preco: 99.90, imagem: "produtos/calca1.jpg" },
-      { id: 5, nome: "Acessórios Femininos", preco: 49.90, imagem: "produtos/acessorio1.jpg" }
-    ];
-
-    const carrinho = [];
-
-    function showSection(sectionId, btn) {
-      // Esconder todas as seções
-      document.querySelectorAll('section.content-section').forEach(sec => {
-        sec.classList.remove('active');
-      });
-      // Mostrar a seção escolhida
-      document.getElementById(sectionId).classList.add('active');
-
-      // Atualizar botão ativo no menu
-      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
-
-    function renderizarProdutos() {
-      const container = document.getElementById('product-list');
-      container.innerHTML = '';
-      produtos.forEach(prod => {
-        const card = document.createElement('div');
-        card.className = 'product';
-        card.innerHTML = `
-          <img src="${prod.imagem}" alt="${prod.nome}" loading="lazy" />
-          <h3>${prod.nome}</h3>
-          <p>R$ ${prod.preco.toFixed(2).replace('.', ',')}</p>
-          <button onclick="adicionarAoCarrinho(${prod.id})" aria-label="Adicionar ${prod.nome} ao carrinho">Adicionar ao Carrinho</button>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    function adicionarAoCarrinho(id) {
-      const produto = produtos.find(p => p.id === id);
-      if (!produto) return;
-
-      const itemNoCarrinho = carrinho.find(i => i.id === id);
-      if (itemNoCarrinho) {
-        itemNoCarrinho.quantidade++;
-      } else {
-        carrinho.push({ ...produto, quantidade: 1 });
-      }
-      atualizarCarrinho();
-      alert(`${produto.nome} adicionado ao carrinho.`);
-    }
-
-    function atualizarCarrinho() {
-      const ul = document.getElementById('cart-items');
-      ul.innerHTML = '';
-      if (carrinho.length === 0) {
-        ul.innerHTML = '<li>Carrinho vazio.</li>';
-        return;
-      }
-      carrinho.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.nome} - ${item.quantidade} x R$ ${item.preco.toFixed(2).replace('.', ',')}`;
-        ul.appendChild(li);
-      });
-    }
-
-    function finalizarCompra() {
-      if (carrinho.length === 0) {
-        alert('Seu carrinho está vazio!');
-        return;
-      }
-      const formaPagamento = document.getElementById('payment-method').value;
-      if (!formaPagamento) {
-        alert('Por favor, selecione a forma de pagamento.');
-        return;
-      }
-
-      let mensagem = `Olá! Gostaria de fazer um pedido:\n\n`;
-      carrinho.forEach(item => {
-        mensagem += `${item.quantidade} x ${item.nome} - R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}\n`;
-      });
-      const total = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
-      mensagem += `\nTotal: R$ ${total.toFixed(2).replace('.', ',')}\n`;
-      mensagem += `Forma de pagamento: ${formaPagamento}`;
-
-      const url = `https://api.whatsapp.com/send?phone=5599999999999&text=${encodeURIComponent(mensagem)}`;
-      window.open(url, '_blank');
-    }
-
-    function finalizarNoSite() {
-      alert('Finalização pelo site ainda não está disponível. Por favor, finalize pelo WhatsApp.');
-    }
-
-    function abrirWhatsApp() {
-      window.open('https://api.whatsapp.com/send?phone=5599999999999', '_blank');
-    }
-
-    // Inicializa
-    renderizarProdutos();
-    atualizarCarrinho();
-  </script>
-</body>
-</html>
+  <!-- Modal de
