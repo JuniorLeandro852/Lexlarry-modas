@@ -27,11 +27,35 @@
       letter-spacing: 1px;
     }
 
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
     nav a {
       color: #fff;
       text-decoration: none;
       margin-left: 1.5rem;
       font-size: 1rem;
+    }
+
+    .cart {
+      position: relative;
+      margin-left: 1.5rem;
+      cursor: pointer;
+    }
+
+    .cart::after {
+      content: attr(data-count);
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: red;
+      color: white;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 50%;
+      display: inline-block;
     }
 
     .hero {
@@ -63,6 +87,9 @@
       border-radius: 8px;
       overflow: hidden;
       transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .product img {
@@ -74,6 +101,20 @@
     .product h3 {
       margin: 1rem;
       font-size: 1.2rem;
+    }
+
+    .product button {
+      margin: 0 1rem 1rem;
+      padding: 0.5rem;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .product:hover {
+      transform: scale(1.02);
     }
 
     .whatsapp {
@@ -97,10 +138,6 @@
       padding: 1rem;
       font-size: 0.9rem;
     }
-
-    .product:hover {
-      transform: scale(1.02);
-    }
   </style>
 </head>
 <body>
@@ -110,6 +147,7 @@
     <nav>
       <a href="#produtos">Produtos</a>
       <a href="#contato">Contato</a>
+      <div class="cart" id="cart" data-count="0" title="Carrinho 🛒">🛒</div>
     </nav>
   </header>
 
@@ -121,26 +159,33 @@
     <div class="product">
       <img src="https://images.unsplash.com/photo-1562158070-57de08f67ec2" alt="Produto 1">
       <h3>Vestido Floral</h3>
+      <button onclick="addToCart()">Adicionar ao Carrinho</button>
     </div>
     <div class="product">
       <img src="https://images.unsplash.com/photo-1618354691278-c2c2d8073d25" alt="Produto 2">
       <h3>Blazer Moderno</h3>
+      <button onclick="addToCart()">Adicionar ao Carrinho</button>
     </div>
     <div class="product">
       <img src="https://images.unsplash.com/photo-1602810318383-e926cbdc89e9" alt="Produto 3">
       <h3>Look Casual</h3>
+      <button onclick="addToCart()">Adicionar ao Carrinho</button>
     </div>
     <div class="product">
       <img src="https://images.unsplash.com/photo-1602810318383-e926cbdc89e9" alt="Produto 4">
-      <h3>Camiseta Basica Preta</h3>
+      <h3>Camiseta Básica Preta</h3>
+      <button onclick="addToCart()">Adicionar ao Carrinho</button>
     </div>
     <div class="product">
       <img src="https://images.unsplash.com/photo-1602810318383-e926cbdc89e9" alt="Produto 5">
-      <h3>Camiseta Basica Branca</h3>
+      <h3>Camiseta Básica Branca</h3>
+      <button onclick="addToCart()">Adicionar ao Carrinho</button>
     </div>
     <div class="product">
       <img src="https://images.unsplash.com/photo-1602810318383-e926cbdc89e9" alt="Produto 6">
-      <h3>Tennis Masculino Branco e Preto</h3>
+      <h3>Tênis Masculino Branco e Preto</h3>
+      <button onclick="addToCart()">Adicionar ao Carrinho</button>
+    </div>
   </section>
 
   <section id="contato" class="whatsapp">
@@ -151,6 +196,14 @@
   <footer>
     &copy; 2025 Lexlarry Modas. Todos os direitos reservados.
   </footer>
+
+  <script>
+    let cartCount = 0;
+    function addToCart() {
+      cartCount++;
+      document.getElementById("cart").setAttribute("data-count", cartCount);
+    }
+  </script>
 
 </body>
 </html>
